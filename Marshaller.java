@@ -49,6 +49,7 @@ public class Marshaller {
                     if(chemicalName.contains(bannedComsetic)){
                         System.out.println("--------");
                         System.out.println("Id:"+id +":"+ "Banned cosmetic:" +bannedComsetic);
+                        break;
                     }
                 }
                 String initialDateReported = fields[15];
@@ -118,6 +119,7 @@ public class Marshaller {
         String Hexachlorophene = "Hexachlorophene";
         String Mercurycompounds = "Mercury compounds";;
         String Halogenatedsalicylanilides = "Halogenated salicylanilides";
+        String lead = "Lead";
         String Metabromsalan = "metabromsalan";
         String Methylenechloride = "Methylene chloride";
         String tetrachlorosalicylanilide = "tetrachlorosalicylanilide" ;
@@ -131,6 +133,7 @@ public class Marshaller {
         bannedChemicals.add(Hexachlorophene);
         bannedChemicals.add(Mercurycompounds);
         bannedChemicals.add(Halogenatedsalicylanilides);
+        bannedChemicals.add(lead);
         bannedChemicals.add(Metabromsalan);
         bannedChemicals.add(Methylenechloride);
         bannedChemicals.add(tetrachlorosalicylanilide);
