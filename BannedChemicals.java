@@ -6,6 +6,7 @@ public class BannedChemicals {
     String Chlorofluorocarbonpropellants = "Chlorofluorocarbon propellants";
     String Chloroform = "Chloroform";
     String Halogenatedsalicylanilides = "Halogenated salicylanilides";
+    String lead = "Lead";
     String metabromsalan = "metabromsalan";
     String tetrachlorosalicylanilide = "tetrachlorosalicylanilide";
     String Hexachlorophene = "Hexachlorophene";
