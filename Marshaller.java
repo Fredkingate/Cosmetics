@@ -48,7 +48,7 @@ public class Marshaller {
                 for(String bannedComsetic: bannedCosmetics){
                     if(chemicalName.contains(bannedComsetic)){
                         System.out.println("--------");
-                        System.out.println("Id:"+id +":"+ "Banned cosmetic:" +bannedComsetic);
+                        System.out.println("Id:"+id +":"+ "Banned chemical:" +bannedComsetic);
                         break;
                     }
                 }
@@ -56,7 +56,7 @@ public class Marshaller {
                 for(String bannedCosmetic: bannedCosmetics){
                     if(initialDateReported.equals(bannedCosmetic)){
                         System.out.println("------------");
-                        System.out.println("Id:"+id +":"+ "Banned cosmetic:" +bannedCosmetic);
+                        System.out.println("Id:"+id +":"+ "Banned chemical:" +bannedCosmetic);
                         break;
                     }
                 }
