@@ -1,12 +1,19 @@
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+
 public class Marshaller {
+    protected int leadCount = 0;
+    protected int formaldehydeCount = 0;
+    protected int methyleneChlorideCount = 0;
+    protected int glycerinCount = 0;
+    int[] values ={leadCount,formaldehydeCount,methyleneChlorideCount,glycerinCount};
+    String [] labels = {"Lead","Formaldehyde","MethyleneChloride,Glycerin"};
     // Define the path to your CSV file
-    protected List<Cosmetic> cosmeticsGlobal = new ArrayList<>();
     public Marshaller(){
     }
     public List<String> AnalyzeFile(){
@@ -25,13 +32,16 @@ public class Marshaller {
             Cosmetic cosmetic = new Cosmetic();
             // Process the fields (e.g., print them or store in objects)
             // Ensure the file has consistent formatting to avoid IndexOutOfBoundsException
-            if (fields.length >= 21) { // Example check for expected number of fields
+            if (fields.length >= 21) {
                 int id = Integer.parseInt(fields[0]);
                 String productName = fields[1];
                 for(String bannedComsetic: bannedChemicalsInCosmetics){
                     if(productName.contains(bannedComsetic)){
                         System.out.println("--------");
                         System.out.println("Id:"+id +":"+" Product Name " + productName +  ":" + "Banned chemical:" +bannedComsetic);
+                        if(productName.contains("Glycerin")){
+                            glycerinCount = glycerinCount+1;
+                        }
                     }
                 }
                 String csfId = (fields[2]);
@@ -50,12 +60,21 @@ public class Marshaller {
                 String casNumber = fields[12];
                 String chemicalId = fields[13];
                 String chemicalName = fields[14];
-                for(String bannedComsetic: bannedChemicalsInCosmetics){
-                    if(chemicalName.contains(bannedComsetic)){
+                    if(chemicalName.contains("Lead")){
+                        leadCount = leadCount + 1;
                         System.out.println("--------");
-                        System.out.println("Id:"+id +":"+" Product Name " + productName + "Brand name:" + brandName + ":" + "Banned chemical:" +bannedComsetic);
+                        System.out.println("Id:"+id +":"+" Product Name " + productName + "Brand name:" + brandName + ":" + "Banned chemical:" + chemicalName);
                     }
-                }
+                    if(chemicalName.contains("Formaldehyde")) {
+                        formaldehydeCount = formaldehydeCount + 1;
+                    }
+                    if(chemicalName.contains("Methylene chloride")){
+                        methyleneChlorideCount = methyleneChlorideCount + 1;
+                    }
+                    if(chemicalName.contains("Glycerin")){
+                        glycerinCount = glycerinCount + 1;
+                    }
+
                 String initialDateReported = fields[15];
                 for(String bannedCosmetic: bannedChemicalsInCosmetics){
                     if(initialDateReported.equals(bannedCosmetic)){
@@ -105,7 +124,10 @@ public class Marshaller {
                 System.out.println("Invalid line format: " + line);
             }
         }
-
+            System.out.println("Number of cosmetic products that contain Lead:"+leadCount);
+            System.out.println(("Number of products that contain Formaldehyde:"+formaldehydeCount));
+            System.out.println("Number of products that contain Methylene chloride:"+methyleneChlorideCount);
+            System.out.println("Number of products that contain Glycerin:"+glycerinCount);
         }
     } catch (
     IOException e) {
@@ -157,4 +179,5 @@ public class Marshaller {
         bannedChemicals.add(Zirconiumcontainingcomplexes);
         return bannedChemicals;
     }
+
 }
